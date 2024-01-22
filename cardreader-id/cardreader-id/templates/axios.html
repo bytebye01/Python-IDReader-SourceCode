@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Reader</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 750px;
+            margin-top: 50px;
+        }
+        .card {
+            position: relative;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .photo-image {
+            position: absolute;
+            top: 0;
+            right: 70px;
+            max-width: 100px;
+            margin-top: 20px; /* Adjust this value as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center mb-4">Card Reader</h2>
+        
+        <div class="text-center mb-3">
+            <button class="btn btn-primary" onclick="getData()">Get Card Data</button>
+        </div>
+        
+        <div id="cardData" class="card">
+            <div id="status" class="mb-2"></div>
+            <div id="message" class="mb-2"></div>
+            <div id="idNumber" class="mb-2"></div>
+            <div id="thaiName" class="mb-2"></div>
+            <div id="engName" class="mb-2"></div>
+            <div id="gender" class="mb-2"></div>
+            <div id="dob" class="mb-2"></div>
+            <div id="age" class="mb-2"></div>
+            <div id="religion" class="mb-2"></div>
+            <div id="address" class="mb-2"></div>
+            <div id="issuer" class="mb-2"></div>
+            <div id="doi" class="mb-2"></div>
+            <div id="doe" class="mb-2"></div>
+            <div id="photo" class="photo-image">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function getData() {
+            axios.get('/get_data')
+                .then(function(response) {
+                    document.getElementById('status').innerHTML = "<strong>status:</strong> " + response.data['Status'];
+                    document.getElementById('message').innerHTML = "<strong>message:</strong> " + response.data['Message'];
+                    document.getElementById('idNumber').innerHTML = "<strong>ID Number:</strong> " + response.data['ID Number'];
+                    document.getElementById('thaiName').innerHTML = "<strong>Thai Name:</strong> " + response.data['Thai Name'];
+                    document.getElementById('engName').innerHTML = "<strong>English Name:</strong> " + response.data['English Name'];
+                    document.getElementById('gender').innerHTML = "<strong>Gender:</strong> " + response.data['Gender'];
+                    document.getElementById('dob').innerHTML = "<strong>Date of Birth:</strong> " + response.data['Date of Birth'];
+                    document.getElementById('age').innerHTML = "<strong>Age:</strong> " + response.data['Age'];
+                    document.getElementById('religion').innerHTML = "<strong>Religion:</strong> " + response.data['Religion'];
+                    document.getElementById('address').innerHTML = "<strong>Address:</strong> " + response.data['Address'];
+                    document.getElementById('issuer').innerHTML = "<strong>Issuer:</strong> " + response.data['Issuer'];
+                    document.getElementById('doi').innerHTML = "<strong>Date of Issue:</strong> " + response.data['Date of Issue'];
+                    document.getElementById('doe').innerHTML = "<strong>Date of Expiry:</strong> " + response.data['Date of Expiry'];
+
+                    const photoBase64 = response.data['Photo(base64)'];
+                    const photoElement = document.getElementById('photo');
+                    photoElement.innerHTML = `<img src="data:image/png;base64, ${photoBase64}" alt="Photo" />`;
+                    // เพิ่มฟิลด์อื่นๆตามต้องการ
+                })
+                .catch(function(error) {
+                    console.error('Error fetching data:', error);
+                });
+        }
+    </script>
+</body>
+</html>

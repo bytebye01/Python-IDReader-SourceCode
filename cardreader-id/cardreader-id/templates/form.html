@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>card-reader</title>
+    <style>
+    /* กำหนดความกว้างของช่อง input */
+    input[type="text"] {
+      width: 450px; /* ปรับค่าตามที่ต้องการ */ }
+    </style>
+    </head>
+    <body>
+<h2>แบบฟอร์มข้อมูลบัตรประชาชน</h2>
+<form action="/submit_form" method="POST">
+
+  <label for="IDno">ID Number:</label><br>
+  <input type="text" id="IDno" name="IDno" value="{{IDno}}""><br>
+
+  <label for="THName">Thai Name:</label><br>
+  <input type="text" id="THName" name="THName" value="{{ THName }}"><br>
+
+  <label for="ENName">English Name:</label><br>
+  <input type="text" id="ENName" name="ENName" value="{{ ENName }}"><br>
+
+  <label for="Gender">Gender:</label><br>
+  <input type="text" id="Gender" name="Gender" value="{{ Gender }}"><br>
+
+  <label for="DOB">Date of Birth:</label><br>
+  <input type="text" id="DOB" name="DOB" value="{{ DOB }}"><br>
+
+  <label for="Age">Age:</label><br>
+  <input type="text" id="Age" name="Age" value="{{ Age }}"><br>
+  
+  <label for="Religion">Religion:</label><br>
+  <input type="text" id="Religion" name="Religion" value="{{ Religion }}"><br>
+
+  <label for="Address">Address:</label><br>
+  <input type="text" id="Address" name="Address" value="{{ Address }}"><br>
+
+  <label for="Issuer">Issuer:</label><br>
+  <input type="text" id="Issuer" name="Issuer" value="{{ Issuer }}"><br>
+
+  <label for="DOI">Date of Issue:</label><br>
+  <input type="text" id="DOI" name="DOI" value="{{ DOI }}"><br>
+
+  <label for="DOE">Date of Expiry:</label><br>
+  <input type="text" id="DOE" name="DOE" value="{{ DOE }}"><br>
+
+  <label for="Photobase64">Photo(base64):</label><br>
+  <input type="text" id="Photobase64" name="Photobase64" value="{{ Photobase64 }}"><br><br>
+
+  <input type="submit" value="Submit">
+</form> 
+</body>
+</html>
